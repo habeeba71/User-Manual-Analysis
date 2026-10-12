@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up - Electronics User Manual Analysis</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="signup-page">
+
+<div class="signup-box">
+
+    <h1>Electronics User Manual Analysis</h1>
+
+    <h2>Create Account</h2>
+
+    <p class="subtitle">
+        NLP Based User Manual Analysis System
+    </p>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('signup') }}" method="POST">
+
+        <label>Username</label>
+        <input type="text"
+               name="username"
+               placeholder="Enter username"
+               required>
+
+        <label>Email</label>
+        <input type="email"
+               name="email"
+               placeholder="Enter email"
+               required>
+
+        <label>Password</label>
+        <input type="password"
+               name="password"
+               placeholder="Enter password"
+               required>
+
+        <label>Confirm Password</label>
+        <input type="password"
+               name="confirm_password"
+               placeholder="Confirm password"
+               required>
+
+        <button type="submit">Create Account</button>
+
+    </form>
+
+    <div class="login-link">
+        <p>
+            Already have an account?
+            <a href="{{ url_for('login') }}">Login</a>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

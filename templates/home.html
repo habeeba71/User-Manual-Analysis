@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | ManualAnalyzer</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-page">
+
+<div class="dashboard-shell">
+
+    <header class="dashboard-header">
+        <a href="{{ url_for('home') }}" class="brand dashboard-brand">
+            <span class="brand-icon">▤</span>
+            <div>
+                <h2>Manual<span>Analyzer</span></h2>
+                <p>NLP-Powered Manual Analysis</p>
+            </div>
+        </a>
+
+        <div class="header-user">
+            <span class="user-avatar">♙</span>
+            <span>{{ username }}</span>
+            <a href="{{ url_for('logout') }}" class="logout-button">
+                Logout
+            </a>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+
+        <section class="welcome-banner">
+            <div>
+                <p class="eyebrow">YOUR WORKSPACE</p>
+                <h1>Welcome back, {{ username }}!</h1>
+                <p>Upload an electronic user manual to extract
+                   important information and generate summaries.</p>
+            </div>
+            <div class="welcome-icon">▤</div>
+        </section>
+
+        {% if error %}
+            <p class="message error-message">{{ error }}</p>
+        {% endif %}
+
+        <section class="upload-card">
+            <div class="section-heading">
+                <span class="section-icon">↑</span>
+                <div>
+                    <h2>Analyze User Manual</h2>
+                    <p>Upload a PDF document to begin NLP analysis.</p>
+                </div>
+            </div>
+
+            <form action="{{ url_for('analyze') }}"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                <label class="upload-area" for="pdf">
+                    <span class="upload-icon">↑</span>
+                    <strong>Select your PDF manual</strong>
+                    <span>Choose an electronic user manual from your device</span>
+                    <span class="file-hint">PDF files only</span>
+                </label>
+
+                <input id="pdf"
+                       type="file"
+                       name="pdf"
+                       accept=".pdf,application/pdf"
+                       required>
+
+                <button type="submit" class="primary-button analyze-button">
+                    Analyze Manual &nbsp; →
+                </button>
+            </form>
+        </section>
+
+        {% if summaries %}
+        <section class="results-section">
+            <div class="results-heading">
+                <div>
+                    <p class="eyebrow">ANALYSIS COMPLETE</p>
+                    <h2>Analysis Results</h2>
+                    <p>Important information extracted from your manual.</p>
+                </div>
+                <span class="status-pill">✓ Completed</span>
+            </div>
+
+            <div class="results-grid">
+                {% for category, summary in summaries.items() %}
+                <article class="result-card">
+                    <div class="result-card-top">
+                        <span class="result-dot"></span>
+                        <h3>{{ category }}</h3>
+                    </div>
+                    <p>{{ summary }}</p>
+                </article>
+                {% endfor %}
+            </div>
+
+            <div class="processing-info">
+                <span>◷ &nbsp; Processing Time</span>
+                <strong>{{ process_time }} seconds</strong>
+            </div>
+        </section>
+        {% endif %}
+
+    </main>
+
+    <footer class="dashboard-footer">
+        © 2026 ManualAnalyzer | NLP-Based Electronic User Manual Analyzer
+    </footer>
+
+</div>
+</body>
+</html>
+```

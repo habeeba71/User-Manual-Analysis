@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ManualAnalyzer</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-page">
+
+<div class="app-shell">
+
+    <section class="brand-panel">
+        <div class="brand">
+            <span class="brand-icon">▤</span>
+            <div>
+                <h2>Manual<span>Analyzer</span></h2>
+                <p>NLP-Powered Manual Analysis</p>
+            </div>
+        </div>
+
+        <div class="brand-content">
+            <h1>NLP-Based<br>
+                <span>Electronic User Manual</span><br>
+                Analyzer
+            </h1>
+
+            <div class="accent-line"></div>
+
+            <p class="brand-description">
+                Upload electronic user manuals and get meaningful
+                insights, important sections and concise summaries
+                using NLP techniques.
+            </p>
+
+            <div class="manual-illustration">
+                <div class="pdf-document">
+                    <span class="pdf-label">USER MANUAL</span>
+                    <div class="document-line"></div>
+                    <div class="document-line short"></div>
+                    <div class="document-line"></div>
+                    <div class="document-line medium"></div>
+                    <div class="document-line short"></div>
+                    <span class="pdf-badge">PDF</span>
+                </div>
+
+                <div class="category-list">
+                    <div>♡ &nbsp; Safety</div>
+                    <div>⚙ &nbsp; Installation</div>
+                    <div>⌕ &nbsp; Maintenance</div>
+                    <div>⚠ &nbsp; Troubleshooting</div>
+                    <div>☷ &nbsp; Specifications</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="brand-footer">
+            Intelligent document analysis powered by NLP.
+        </p>
+    </section>
+
+    <section class="auth-panel">
+        <div class="auth-card">
+
+            <div class="user-icon">♙</div>
+
+            <h2>Welcome Back!</h2>
+            <p class="auth-subtitle">Login to continue to your account</p>
+
+            {% if error %}
+                <p class="message error-message">{{ error }}</p>
+            {% endif %}
+
+            <form action="{{ url_for('login_user') }}" method="POST">
+
+                <label for="username">Username</label>
+                <input id="username"
+                       type="text"
+                       name="username"
+                       placeholder="Enter your username"
+                       autocomplete="username"
+                       required>
+
+                <label for="password">Password</label>
+                <input id="password"
+                       type="password"
+                       name="password"
+                       placeholder="Enter your password"
+                       autocomplete="current-password"
+                       required>
+
+                <div class="form-options">
+                    <label class="remember-option">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+
+                    
+                </div>
+
+                <button class="primary-button" type="submit">
+                    ⇥ &nbsp; Login
+                </button>
+            </form>
+
+            <div class="separator"><span>OR</span></div>
+
+            <a class="outline-button"
+               href="{{ url_for('signup') }}">
+                ♙ &nbsp; Create an Account
+            </a>
+
+            <p class="auth-bottom">
+                New here? Create an account to get started.
+            </p>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 ManualAnalyzer | NLP-Based Electronic User Manual Analyzer
+    </footer>
+
+</div>
+</body>
+</html>
+
